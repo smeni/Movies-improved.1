@@ -1,0 +1,59 @@
+﻿@model IEnumerable<_4.Entities.Users>
+
+<p>
+    @Html.ActionLink("יצירת משתמש חדש", "Registration", "Login")
+
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("מספר משתמש")
+        </th>
+        <th>
+            @Html.Label("שם משתמש")
+        </th>
+        <th>
+            @Html.Label("מייל משתמש")
+        </th>
+        <th>
+            @Html.Label("סיסמת כניסה")
+        </th>
+        <th>
+            @Html.Label("דרגת משתמש")
+        </th>
+        <th>
+            @Html.Label("משתמש פעיל")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NickName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Roles.roleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActiv)
+        </td>
+        <td>
+            @Html.ActionLink("עריכת פרטי משתמש", "EditUser", new { id = item.UserID })
+        </td>
+    </tr>
+    }
+
+
+</table>

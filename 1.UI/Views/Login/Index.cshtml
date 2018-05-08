@@ -1,0 +1,40 @@
+﻿@model _1.UI.Models.LoginInfo
+
+
+
+@*Login Screen*@
+<head>
+    <link href="~/Content/Designer/LoginStyle.css" rel="stylesheet" />
+</head>
+
+<div class="login">
+    @*class="logindiv"*@
+    <form class="form-container" action="/Login/Login">
+
+        <div class="form-title"><h2>כניסת משתמש רשום</h2></div>
+
+        <div class="form-title">Email</div>
+        <input class="form-field" type="text" name="email" /><br />
+
+        <div class="form-title">Password</div>
+        <input class="form-field" type="Password" name="Password" /><br />
+
+        <div class="submit-container">
+            <input class="submit-button" type="submit" value="כניסה" />
+        </div>
+
+        <div>
+            <span>עדיין אינך רשום?   <a href="/Login/Create/">להרשמה לחץ כאן</a></span>
+        </div>
+        <br />
+
+        <div>
+            @Html.ActionLink("חזרה לעמוד הבית", "Index", "Movie")
+        </div>
+    </form>
+</div>
+
+<br />
+
+
+

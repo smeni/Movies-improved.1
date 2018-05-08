@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categorys">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Movies" Relationship="Model.FK_Movies_Categorys" FromRole="Categorys" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="Prices">
+    <Key>
+      <PropertyRef Name="Level" />
+    </Key>
+    <Property Name="Level" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Movies" Relationship="Model.FK_Movies_Prices" FromRole="Prices" ToRole="Movies" />
+  </EntityType>
+  <EntityContainer Name="Movies_Rental_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categorys" EntityType="Self.Categorys" />
+    <EntitySet Name="Prices" EntityType="Self.Prices" />
+    <EntitySet Name="Orders" EntityType="Model.Orders" />
+    <EntitySet Name="Movies" EntityType="Model.Movies" />
+    <AssociationSet Name="FK_Movies_Categorys" Association="Model.FK_Movies_Categorys">
+      <End Role="Categorys" EntitySet="Categorys" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movies_Prices" Association="Model.FK_Movies_Prices">
+      <End Role="Prices" EntitySet="Prices" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Movies" Association="Model.FK_Orders_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="Model.Roles" />
+    <EntitySet Name="Users" EntityType="Model.Users" />
+    <AssociationSet Name="FK_Orders_Users" Association="Model.FK_Orders_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Model.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="MovieID" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsActiv" Type="Boolean" />
+    <NavigationProperty Name="Movies" Relationship="Model.FK_Orders_Movies" FromRole="Orders" ToRole="Movies" />
+    <NavigationProperty Name="Users" Relationship="Model.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="MovieID" />
+    </Key>
+    <Property Name="MovieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MovieName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="Picture" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MovieTrailer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActiv" Type="Boolean" />
+    <Property Name="Level" Type="Int32" />
+    <Property Name="Ranking" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Categorys" Relationship="Model.FK_Movies_Categorys" FromRole="Movies" ToRole="Categorys" />
+    <NavigationProperty Name="Prices" Relationship="Model.FK_Movies_Prices" FromRole="Movies" ToRole="Prices" />
+    <NavigationProperty Name="Orders" Relationship="Model.FK_Orders_Movies" FromRole="Movies" ToRole="Orders" />
+  </EntityType>
+  <Association Name="FK_Movies_Categorys">
+    <End Type="Model.Categorys" Role="Categorys" Multiplicity="1" />
+    <End Type="Model.Movies" Role="Movies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorys">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movies_Prices">
+    <End Type="Model.Prices" Role="Prices" Multiplicity="0..1" />
+    <End Type="Model.Movies" Role="Movies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prices">
+        <PropertyRef Name="Level" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="Level" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Movies">
+    <End Type="Model.Movies" Role="Movies" Multiplicity="1" />
+    <End Type="Model.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="MovieID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="MovieID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="roleNumber" />
+    </Key>
+    <Property Name="roleNumber" Type="Int32" Nullable="false" />
+    <Property Name="roleName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="Model.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NickName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="roleNumber" Type="Int32" Nullable="false" />
+    <Property Name="IsActiv" Type="Boolean" />
+    <NavigationProperty Name="Orders" Relationship="Model.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
+    <NavigationProperty Name="Roles" Relationship="Model.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK_Orders_Users">
+    <End Type="Model.Users" Role="Users" Multiplicity="1" />
+    <End Type="Model.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Type="Model.Roles" Role="Roles" Multiplicity="1" />
+    <End Type="Model.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="roleNumber" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="roleNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

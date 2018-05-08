@@ -1,0 +1,94 @@
+﻿
+
+<div ng-app="" >
+
+    <div class="fish" id="fish"></div>
+    <div class="fish" id="fish2"></div>
+
+    <h2>הוספת סרט חדש - עקוב אחר ההוראות</h2>
+
+    <form name="myForm" action="/Movie/Add" method="post">
+
+        <span>כתובת תמונה</span>
+        <div>
+            <input type="text" name="Picture" ng-model="pic" placeholder="for example:  *******.jpg " required>
+            <span ng-show="myForm.Picture.$invalid">Enter the image address.</span>
+        </div><br />
+
+
+        <span>שם הסרט</span>
+        <div>
+            <input type="text" name="MovieName" ng-model="name" placeholder="for example: Ocean's Eleven" required>
+            <span ng-show="myForm.MovieName.$invalid">The name is required.</span>
+        </div><br />
+
+        <span>מספר קטגוריה </span>
+        <div>
+            <input type="number" name="CategoryID" ng-model="catID" min="1" max="3" placeholder="1 for Action, 2 for Drama, 3 for Comedy" required>
+            <span ng-show="myForm.CategoryID.$invalid">The number must be between 1 and 3.</span>
+        </div><br />
+
+
+        <span>דירוג</span>
+        <div>
+            <input type="number" name="Ranking" ng-model="ranking" min="1" max="5" placeholder="1 for a low rating 5 for the highest rating" required>
+            <span ng-show="myForm.Ranking.$invalid">The number must be between 1 and 5.</span>
+        </div><br />
+
+        <span>קדימון</span>
+        <div>
+            <input type="text" name="MovieTrailer" ng-model="trailer" placeholder="for example: https://youtu.be/NtSf0B-MhZM" required>
+            <span ng-show="myForm.MovieTrailer.$invalid">Insert YouTube link.</span>
+        </div><br />
+
+        <span>רמת מחיר</span>
+        <div>
+            <input type="number" name="Level" ng-model="level" min="1" max="3" placeholder="1 Lowest 3 highest level" required>
+            <span ng-show="myForm.CategoryID.$invalid">The number must be between 1 and 3.</span>
+        </div><br />
+
+        <input type="submit" name="submit" value="להוסיף לרשימת הסרטים?" ng-disabled="myForm.$invalid" />
+
+
+    </form>
+
+
+    <link href="~/Content/Designer/AddNewMovie.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.min.js"></script>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+﻿
+/*stars*/
+.Stars {
+    display: inline-block;
+    /*float: right;*/
+    width: 93px;
+    height: 16px;
+    background: url(http://img.zap.co.il/imgs/newui/Star-Gray.PNG) no-repeat;
+    direction: rtl;
+    margin-left: 10px;
+}
+
+    .Stars span {
+        display: inline-block;
+        height: 16px;
+        max-width: 93px;
+        /*float: right;*/
+        background: url(http://img.zap.co.il/imgs/newui/Star-Yellow.PNG) no-repeat right transparent;
+        direction: rtl;
+    }
+
+
+a.hideDisplay {
+    /*position: relative;*/
+    position: absolute;
+    z-index: 20;
+    color: #000;
+    text-decoration: none;
+}
+
+    a.hideDisplay:hover {
+        z-index: 30;
+    }
+
+    a.hideDisplay span.showDisplayOnHover {
+        display: none
+    }
+
+    a.hideDisplay:hover span.showDisplayOnHover {
+        display: block;
+        /*display:table-row;*/
+        position: center;
+        /*position:absolute;*/
+        font-size: 18px;
+        line-height: 25px;
+        /*top: 5px;
+        left: 20px;*/
+      
+        width: 200px;
+        padding: 15px;
+        border: 1px solid #666666;
+        background-color: #c0cedd;
+        color: #000000;
+        text-align: right;
+        font-size: 16px;
+        font-weight: normal;
+        color: #444;
+        line-height: 18px;
+    }
+
