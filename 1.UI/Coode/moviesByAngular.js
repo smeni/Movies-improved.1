@@ -1,6 +1,6 @@
 ﻿
 var app = angular.module("myApp", [])
-    .controller("moviesCtrl", function ($scope, $http) {
+    .controller("moviesCtrl", function ($scope, $http, $sce) {
 
 
         $scope.categoris = ["", "Action", "Drama", "Comedy"];
@@ -48,6 +48,10 @@ var app = angular.module("myApp", [])
                 $scope.sortDirection = "down";
             }
 
+        }
+
+        $scope.trustSrc = function (src) {
+            return $sce.trustAsResourceUrl(src);
         }
 
     });
