@@ -33,7 +33,7 @@
 
                     <td style="height:120px">
                         <a class="hideDisplay">
-                            <img src="~/Content/Images/{{m.Picture}}" style="height:100px; width:100px" alt="symbol" />
+                            <img src="~/Content/Images/{{m.Picture}}" style="height:170px; width:170px" alt="symbol" />
                             <span class="showDisplayOnHover">
                                 תקציר:
                                 <span class="showBodyOfDisplayOnHover">
@@ -51,7 +51,12 @@
                         </div>
                     </td>
 
-                    <td><a href="{{m.MovieTrailer}}"><img src="~/Content/Images/youtubeLogo.jpg" style="height:50px; width:50px; " /></a></td>
+                    <td>
+                        <div>
+                            <iframe type="text/html" width="175" height="175"
+                                    ng-src="{{trustSrc(m.MovieTrailer)}}" allowfullscreen frameborder="0"></iframe>
+                        </div>
+                    </td>
 
                     <td>{{m.Level|currency:"₪"}}</td>
                     <td><a href="/Movie/ClientChoice?movieID={{m.MovieID}}">For rente</a></td>
@@ -64,7 +69,7 @@
         <script src="~/Scripts/angular.min.js"></script>
         <script src="~/Coode/moviesByAngular.js"></script>
         <link href="~/Content/Designer/Movies_Home.css" rel="stylesheet" />
-        
+
 
     </div>
 </div>

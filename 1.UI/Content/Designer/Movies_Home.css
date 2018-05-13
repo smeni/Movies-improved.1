@@ -45,16 +45,17 @@ a.hideDisplay {
         line-height: 25px;
         /*top: 5px;
         left: 20px;*/
-      
         width: 200px;
         padding: 15px;
         border: 1px solid #666666;
-        background-color: #c0cedd;
-        color: #000000;
+        background-color: aquamarine;
+        /*background-color: #c0cedd;*/
+        /*color: aquamarine;*/
+        /*color: #000000;*/
         text-align: right;
-        font-size: 16px;
+        font-size: 16px;    
         font-weight: normal;
-        color: #444;
+        color: aquamarine;
         line-height: 18px;
     }
 

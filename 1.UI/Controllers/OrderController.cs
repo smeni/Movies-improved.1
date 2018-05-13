@@ -35,7 +35,7 @@ namespace _1.UI.Controllers
         [Authorize] //view the specific client orders.
         public ActionResult AllOrders()
         {
-            var userMail = (string)Session["Email"];
+            var userMail = User.Identity.Name;
             var user = umanager.Users.Where(u => u.Email == userMail).FirstOrDefault();
             var orders = manager.Orders;
             List<MyOrdersVM> myOrders = new List<MyOrdersVM>();
@@ -44,7 +44,7 @@ namespace _1.UI.Controllers
             {
                 if (item.UserID == user.UserID)
                 {
-                    MyOrdersVM myOrder = new MyOrdersVM
+                    MyOrdersVM myOrder = new MyOrdersVM                          
                     {
                         UserID = item.UserID,
                         OrderID = item.OrderID,
