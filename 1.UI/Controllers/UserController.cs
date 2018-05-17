@@ -61,7 +61,7 @@ namespace _1.UI.Controllers
                 Email = userToUpdate.Email,
                 Password = userToUpdate.Password,
                 roleNumber = roles.roleNumber,
-                IsActiv = true
+                IsActiv = userToUpdate.IsActiv
             };
             manager.Update(user);
 
