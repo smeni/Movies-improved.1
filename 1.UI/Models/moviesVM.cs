@@ -14,6 +14,7 @@ namespace _1.UI.Models
         public string MovieName { get; set; }
         public string Summary { get; set; }
         public string CategoryName { get; set; }
+        public int NumberOfViews { get; set; }
         public Nullable<int> Ranking { get; set; }
         public string MovieTrailer { get; set; }
         public Double Level { get; set; }

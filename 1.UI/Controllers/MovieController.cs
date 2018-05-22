@@ -94,6 +94,7 @@ namespace _1.UI.Controllers
                     MovieName = item.MovieName,
                     Summary = item.Summary,
                     CategoryName = item.Categorys.CategoryName,
+                    NumberOfViews = item.Orders.Count,
                     Ranking = item.Ranking,
                     MovieTrailer = item.MovieTrailer,
                     Level = (Double)item.Prices.Price,
@@ -132,7 +133,6 @@ namespace _1.UI.Controllers
             return Json(allMoviess, JsonRequestBehavior.AllowGet);
         }
 
-
         public ActionResult Add(InsertMovieVM newMovieVM)
         {
             Movies newMovie = new Movies
@@ -149,10 +149,12 @@ namespace _1.UI.Controllers
 
             return View("Index");
         }
+
         public ActionResult Create()
         {
             return View();
         }
+     
     }
 }
 
